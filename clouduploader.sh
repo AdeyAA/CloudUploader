@@ -65,3 +65,40 @@ TARGET_DIR=${TARGET_DIR:-$DEFAULT_TARGET_DIR}
 STORAGE_CLASS=${STORAGE_CLASS:-$DEFAULT_STORAGE_CLASS}
 
 
+
+#Validate FILE_PATH
+
+if [ -z "$FILE_PATH" ]; then
+	echo "Error: No file specified."
+	show_help
+	exit 1
+fi
+
+if [ ! -f "$FILE_PATH" ]; then
+	echo "Error: File '$FILE_PATH' not found."
+	exit 1
+fi
+
+if [ ! -r "$FILE_PATH" ]; then
+	echo "Error: File '$FILE_PATH' is not readable."
+	exit 1
+fi
+
+
+
+
+#Uploading the file
+
+FILE_NAME=$(basename "$FILE_PATH")
+UPLOAD_OUTPUT=$(aws s3 cp "$FILE_PATH" "s3://$BUCKET_NAME/$TARGET_DIR/" -storage-class "$STORAGE_CLASS" 2>&1)
+
+if [ $? -eq 0 ]; then
+	echo "Upload successful! File available at s3://$BUCKET_NAME/$TARGET_DIR/$FILE_NAME"
+
+	#Create a pre-signed URL
+	PRESIGNED_URL=$(aws s3 presign "s3://$BUCKET_NAME/$TARGET_DIR/$FILE_NAME" --expires-in 3600)
+	echo "Shareable link (valid for 1 hour): $PRESIGNED_URL"
+else
+	echo "Upload failed: $UPLOAD_OUTPUT"
+	exit 1
+fi
