@@ -26,7 +26,7 @@ CloudUplaoder is a simple command-line tool for uploading files to cloud storage
 
 - Uplaod files to a cloud storage service (e.g., AWS s3).
 	- Specify a target directory and storage class.
-	- Upload with a progress bar (requires `pv`).
+	- Upload files to the cloud featuring a progress bar (requires `pv`).
 	- Encrypt the file before uploading.
 	- Check if a file already exists in S3 and prompt for overwrite, skip, or rename.
 	- Generate a pre-signed URL for sharing after a succesful upload (valid for 1 hour.
