@@ -24,12 +24,12 @@ CloudUplaoder is a simple command-line tool for uploading files to cloud storage
 
 ## Features
 
--Uplaod files to a cloud storage service (e.g., AWS s3).
+-Upload files to a cloud storage service (e.g., AWS s3).
 	-Specify a target directory and storage class.
 	-Upload with a progress bar (requires `pv`).
 	-Encrypt the file before uploading.
 	-Check if a file already exists in S3 and prompt for overwrite, skip, or rename.
-	-Generate a pre-signed URL for sharing after a succesful upload (valid for 1 hour.
+	-Generate a pre-signed URL for sharing after a successful upload (valid for 1 hour.
 	-Error handling for invalid file paths, missing files, and upload failures.
 
 
@@ -37,7 +37,7 @@ CloudUplaoder is a simple command-line tool for uploading files to cloud storage
 ## Installation
 
 1. Clone the repository:
-```bash
+
 `git clone https://github.com/yourusername/CloudUploader.git`
 
 2. Navigate into the project directory:
@@ -64,8 +64,8 @@ EXAMPLE:
 
 
 
--To encrypt the file before uploading, use the -e or --encrypt option, run the follwing command:
-`./clouduploader.sh -e /path/to/file.txt
+-To encrypt the file before uploading, use the -e or --encrypt option, run the following command:
+`./clouduploader.sh -e /path/to/file.txt`
 
 
 -The script shows a progress bar during file upload, as long as the `pv` command is installed.
@@ -97,11 +97,10 @@ EXAMPLE:
 	-Authenticate with AWS (e.g., `aws configure`)
 -`pv` (Optional) : For displaying a progress bar during upload.
 	-Install `pv`:
-	```bash
-	brew install pv
+	`brew install pv`
 -`openssl` (Optional): Required for file encryption
 	-Install `openssl`
-	brew install openssl
+	`brew install openssl`
 
 
 
@@ -111,7 +110,7 @@ EXAMPLE:
 	-For AWS S3, run:
 		`aws configure`
 	-Set the `BUCKET_NAME` variable in the script to your personal bucket name.
-		-`BUCKET_NAME="your-bucket-name"
+		-`BUCKET_NAME`="your-bucket-name"
 
 
 
